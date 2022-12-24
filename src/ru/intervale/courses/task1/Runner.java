@@ -14,6 +14,8 @@ public class Runner {
 
         System.out.println(Arrays.toString(numOfPositiveAndSumOfNegativeByCycle(arr2)));
 
+        System.out.println(Arrays.toString(numOfPositiveAndSumOfNegativeByStream(emptyArray)));
+
 
     }
 
@@ -21,7 +23,7 @@ public class Runner {
         int sumOfPositiveNumbers = 0;
         int sumOfNegativeNumbers = 0;
 
-        if (Objects.nonNull(array)){
+        if (Objects.nonNull(array)) {
             for (int i : array) {
                 if (i > 0) {
                     sumOfPositiveNumbers++;
@@ -37,4 +39,24 @@ public class Runner {
         return new int[]{sumOfPositiveNumbers, sumOfNegativeNumbers};
     }
 
+    public static int[] numOfPositiveAndSumOfNegativeByStream(int[] array) {
+        if (Objects.isNull(array) || array.length == 0) {
+            return new int[0];
+        }
+
+        return Arrays.stream(array)
+                .collect(() -> new int[]{0, 0},
+                        (acc, i) ->
+                        {
+                            if (i > 0) {
+                                acc[0]++;
+                            } else if (i < 0) {
+                                acc[1] += i;
+                            }
+                        },
+                        (acc1, acc2) -> {
+                            acc1[0] += acc2[0];
+                            acc1[1] += acc2[1];
+                        });
+    }
 }
