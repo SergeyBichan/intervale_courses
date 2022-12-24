@@ -18,13 +18,13 @@ public class Runner {
     }
 
     public static int[] numOfPositiveAndSumOfNegativeByCycle(int[] array) {
-        int sumOfPositive = 0;
+        int sumOfPositiveNumbers = 0;
         int sumOfNegativeNumbers = 0;
 
         if (Objects.nonNull(array)){
             for (int i : array) {
                 if (i > 0) {
-                    sumOfPositive++;
+                    sumOfPositiveNumbers++;
                 }
                 if (i < 0) {
                     sumOfNegativeNumbers += i;
@@ -34,7 +34,7 @@ public class Runner {
         if (Objects.isNull(array) || array.length == 0) {
             return new int[0];
         }
-        return new int[]{sumOfPositive, sumOfNegativeNumbers};
+        return new int[]{sumOfPositiveNumbers, sumOfNegativeNumbers};
     }
 
 }
